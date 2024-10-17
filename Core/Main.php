@@ -54,7 +54,8 @@ class Main
             // permet de vérifier si dans le controller on a une méthode action qui existe
             if (method_exists($controller, $action)) {
                 // si il reste des paramètres on mles passe à la méthode
-                (isset($params[0])) ? $controller->$action($params) : $controller->$action();
+                (isset($params[0])) ? call_user_func_array([$controller, $action], $params)  : $controller->$action();
+                // call_user_func_array([$controller, $action], $params) reprend $controller->$action($params)mais en faisant passé les paramètres non pas en tableau mais les uns après les autres
             } else {
                 http_response_code(404);
                 echo "La page recherchée n'existe pas";

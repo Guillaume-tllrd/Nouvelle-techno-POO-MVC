@@ -30,7 +30,7 @@ class Db extends PDO
             parent::__construct($_dsn, self::DBUSER, self::DBPASS);
 
             $this->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
-            $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); // ici ca veut dire que a chaque fois que je vais faire un fetch je vais le faire avec la propriété fecth_assoc qui va me permettre un tableau assoc
+            $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ); // ici ca veut dire que a chaque fois que je vais faire un fetch je vais le faire avec la propriété fetch_obj qui me permet d'écrire de facon objet dans les balises html
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //   ici on pourrait mettre en silence i on ne veut pas d'eerreur ici on va déclencher une exception
             // étant donné que je vais faire du PDO j'ai relié PDOexcepetion que je vais mettre en dessous. du coup je vais faire un try pour essayer de me co et ensuite un catch
