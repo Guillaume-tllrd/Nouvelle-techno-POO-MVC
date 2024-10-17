@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
-class MainController {
+class MainController extends Controller
+{
 
-    puyblic function index(){
+    public function index()
+    {
         echo "ceci est la page d'acceuil";
     }
 }

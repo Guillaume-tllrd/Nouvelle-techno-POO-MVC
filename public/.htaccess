@@ -1,5 +1,5 @@
-# On démarre le moteur de réécriture
+# On démarre le moteur de réécriture, cest pour apache. ce fichier est la pour interpreter ce qu'on passe dans l'url
 RewriteEngine On
 
-# On réécrit l'URL : je précise tout ce que j'accepte dans l'url
+# On réécrit l'URL : je précise tout ce que j'accepte dans l'url,
 RewriteRule ^([a-zA-Z0_9\-\_\/]*)$ index.php?p=$1

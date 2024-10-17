@@ -1,17 +1,18 @@
 <?php
+// il faut configurer le serveur pour que la page index dans le dossier public devienne la page d'accueil
 use App\Autoloader;
 use App\Core\Main;
 
 // ce fichier sera le fichier centrale de notre dossier et sera uniquement là pour lancer le routeur, c'est ce fichier qui sera interroger a chaque fois que l'on va charger une page
-// on va définir une constante contenant le dpossier racine du projet
+// on va définir une constante contenant le dossier racine du projet
 // je déclare ROOT et doit symboliser le dossier NOUVELLE TECHNO POO MVC et non public 
 define('ROOT', dirname(__DIR__)); // ça me donne le chemin d'accès directement du dossier complet
 
 // on importe l'autoloader:
-require_once ROOT. '/Autoloader.php';
+require_once ROOT . '/Autoloader.php';
 Autoloader::register();
 
-// On instancie Main (qui sera le routeur)
+// On instancie Main (qui sera le routeur) situé dans le core
 $app = new Main();
 
 // start sera la méthode du routeur pour démarrer

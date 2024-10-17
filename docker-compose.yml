@@ -5,7 +5,7 @@ services:
         ports:
             - "8007:80" # on définit le port pour accéder à l'application (localhost:8007) faire correspondre avec le PHPMyAdmin
         volumes:
-            -./php:/var/www/html # on monte le dossier courant dans le dossier /var/www/html du container
+            - :/var/www/html # on monte le dossier courant dans le dossier /var/www/html du container
         build:
             context: .
             dockerfile: Dockerfile # correpond au nom du fichier
