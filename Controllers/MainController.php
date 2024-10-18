@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 class MainController extends Controller
 {
-
     public function index()
     {
         // pour avoir un render ndifférent pour la page d'acceuil en se servant du home et pas du default:
