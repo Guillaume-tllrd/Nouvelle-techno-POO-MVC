@@ -18,6 +18,12 @@ class UsersController extends Controller
         $form->debutForm()
             ->ajoutLabelFor('email', 'E-mail :')
             ->ajoutInput("email", "email", ['class' => 'form-control', 'id' => 'email'])
+            ->ajoutLabelFor('pass', 'Mot de passe :')
+            ->ajoutInput('password', 'password', ['id' => "pass", 'class' => 'form-control'])
+            ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary'])
             ->finForm();
+
+        // pour faire afficher le formulaire, on utilise la méthode render du controller et on lui passe les données (loginForm), dans la vue(Views/users/login.php) on a juste à mettre le formulaire
+        $this->render('users/login', ['loginForm' => $form->create()]);
     }
 }

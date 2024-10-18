@@ -108,7 +108,8 @@ class Form
         return $this;
     }
 
-    public function ajoutTextarea(string $nom, string $valeur = '', array $attributs = []):self{
+    public function ajoutTextarea(string $nom, string $valeur = '', array $attributs = []): self
+    {
 
         // on ouvre la balise:
         $this->formCode .= "<textarea for='$nom'";
@@ -123,13 +124,37 @@ class Form
     }
 
     // méthode pour les select: 
-    public function ajoutSelect(string $nom, array $options, array $attributs = []):self{
+    public function ajoutSelect(string $nom, array $options, array $attributs = []): self
+    {
 
         // on crée le select 
         $this->formCode .= "<select name='$nom'";
 
         // on ajoute les attriubuts 
-        $this->formCode .= $attributs ? $this-> ajoutAttributs($attributs);
+        $this->formCode .= $attributs ? $this->ajoutAttribut($attributs) . '>' : '>';
+
+        // on ajoute les options : 
+        foreach ($options as $valeur => $texte) {
+            $this->formCode .= "<option value='$valeur'>$texte</option>";
+        }
+
+        // on ferme le select 
+        $this->formCode .= '</select>';
+
+        return $this;
+    }
+
+    public function ajoutBouton(string $texte, array $attributs = []): self
+    {
+
+        // on ouvre le bouton
+        $this->formCode .= "<button '";
+
+        // on ajoute les attributs
+        $this->formCode .= $attributs ? $this->ajoutAttribut($attributs) : "";
+
+        // on ajoute le texte et on ferme le bouton: 
+        $this->formCode .= ">$texte </button>";
 
         return $this;
     }
