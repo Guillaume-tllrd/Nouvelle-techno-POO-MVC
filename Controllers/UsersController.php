@@ -26,4 +26,21 @@ class UsersController extends Controller
         // pour faire afficher le formulaire, on utilise la méthode render du controller et on lui passe les données (loginForm), dans la vue(Views/users/login.php) on a juste à mettre le formulaire
         $this->render('users/login', ['loginForm' => $form->create()]);
     }
+
+    // Inscription dees users
+    public function register()
+    {
+        $form = new Form;
+
+        $form->debutForm()
+            ->ajoutLabelFor("email", 'E-mail : ')
+            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
+            ->ajoutLabelFor('pass', 'Mot de passe :')
+            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control'])
+            ->ajoutBouton('M\'inscrire' . ['id' => 'btn btn-primary'])
+            ->finForm();
+
+        // mtn qu'on a fini notre formulaire il faut l'envoyer sous le nom de registerForm à la vue: 'users/register' 
+        $this->render('users/register', ['registerForm' => $form->create()]);
+    }
 }
