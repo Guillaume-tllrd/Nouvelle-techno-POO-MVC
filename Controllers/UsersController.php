@@ -96,4 +96,10 @@ class UsersController extends Controller
         // mtn qu'on a fini notre formulaire il faut l'envoyer sous le nom de registerForm à la vue: 'users/register' 
         $this->render('users/register', ['registerForm' => $form->create()]);
     }
+
+    public function logout(){
+        unset($_SESSION['user']);
+        header('Location:'.$_SERVER['HTTP_REFERER']); // ça renvoie sur la page où on est situé
+        exit;
+    }
 }
