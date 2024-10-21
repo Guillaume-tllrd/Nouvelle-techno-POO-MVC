@@ -9,6 +9,8 @@ class Main
 {
     public function start()
     {
+        // on démarre la session ici, ça envoie un code dans les cookies, et mtn on a acces a tt moment dans tt notre appli à superglobal $_SESSION 
+        session_start();
         // http://mes-annonces.test/controleur/methode/parametres
         // http://mes-annonces.test/annonces/details/brouette
         // il faut qu'on utilise une méthode réécriture d'url pour qu'on est:

@@ -18,7 +18,16 @@ class UsersModel extends Model
     // elle est spécifique à userModel c'est our ça qu'on la met ici et pas dans MOdel
     public function findOneByEmail(string $email)
     {
-        return $this->requete('SELECT * FROM $this->table WHERE email = ?', [$email])->fetch(); // on fait passer dans un tableau notre email puisque notre methode requete demande dans 1er paramètre un string et un 2eme parametre optionnel un array d'attributs
+        return $this->requete("SELECT * FROM $this->table WHERE email = ?", [$email])->fetch(); // on fait passer dans un tableau notre email puisque notre methode requete demande dans 1er paramètre un string et un 2eme parametre optionnel un array d'attributs
+    }
+
+    // méthode qui permet de créer la session de l'utilisateur:
+    public function setSession()
+    {
+        $_SESSION['user'] = [
+            'id' => $this->id,
+            "email" => $this->email
+        ];
     }
     // faire les getter settrer (accesseur):
     public function getId()

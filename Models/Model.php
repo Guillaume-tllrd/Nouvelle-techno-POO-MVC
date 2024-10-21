@@ -64,7 +64,7 @@ class Model extends Db
     // ----------------CREATE------------------
     // d'abord il faut mettre en place dans ntre annoncesModel un structure avec tou lrs champs qui sont présents dans la bd et avec getter et setter 
     // ensuite on peut créer une méthode qui va prendre comme paramètre MOdel qu'on appel $model peu importe. comme on l'hydrate on a pas besoin de le passer en argument. donc on enlve également le $model dans le foreach et on met $this à la place, l'objet lui-même
-    public function create(Model $model)
+    public function create()
     {
         // reprendre la méthode de findBy et on adapte:
         // on doit faire 3ème tableau qui reprend les "?"
@@ -146,7 +146,7 @@ class Model extends Db
         return $this->requete("DELETE FROM {$this->table} WHERE id = ?", [$id]);
     }
 
-    public function hydrate(array $donnees)
+    public function hydrate($donnees)
     {
         // comme on fait passer un obj étant donné qu'on a changé notre fetch_assoc en fetch_obj on enlve le array de $donnees
         foreach ($donnees as $key => $value) {
