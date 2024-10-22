@@ -13,6 +13,21 @@
 <body>
 
     <div class="container">
+        <?php
+        if (!empty($_SESSION['error'])): ?>
+            <div class="alert alert-danger" role="alert"><?php echo $_SESSION['error'];
+                                                            unset($_SESSION['error']); ?>
+            </div>
+            <!-- une fois que le le message a été modifié je le supprime avec unset -->
+        <?php endif; ?>
+
+        <!-- Pour afficher un message de succès lors de la création d'une annonce -->
+        <?php if (!empty($_SESSION['message'])): ?>
+            <div class="alert alert-success" role="alert"><?php echo $_SESSION['message'];
+                                                            unset($_SESSION['message']); ?>
+            </div>
+            <!-- une fois que le le message a été modifié je le supprime avec unset -->
+        <?php endif; ?>
         <?= $contenu ?>
     </div>
 

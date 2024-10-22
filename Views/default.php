@@ -49,6 +49,21 @@
     </nav>
 
     <div class="container">
+        <?php
+        if (!empty($_SESSION['error'])): ?>
+            <div class="alert alert-danger" role="alert"><?php echo $_SESSION['error'];
+                                                            unset($_SESSION['error']); ?>
+            </div>
+            <!-- une fois que le le message a été modifié je le supprime avec unset -->
+        <?php endif; ?>
+
+        <!-- Pour afficher un message de succès lors de la création d'une annonce -->
+        <?php if (!empty($_SESSION['message'])): ?>
+            <div class="alert alert-success" role="alert"><?php echo $_SESSION['message'];
+                                                            unset($_SESSION['message']); ?>
+            </div>
+            <!-- une fois que le le message a été modifié je le supprime avec unset -->
+        <?php endif; ?>
         <?= $contenu ?>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -50,7 +50,7 @@ class Form
                 $str .= " $attribut";
             } else {
                 // si jamais c'est pas un attribut court OU que savleur est false alors on ajoute attribut='valeur';
-                $str .= " $attribut= '$valeur'";
+                $str .= " $attribut=\"$valeur\"";
             }
         }
         return $str;
@@ -135,7 +135,7 @@ class Form
 
         // on ajoute les options : 
         foreach ($options as $valeur => $texte) {
-            $this->formCode .= "<option value='$valeur'>$texte</option>";
+            $this->formCode .= "<option value=\"$valeur\">$texte</option>";
         }
 
         // on ferme le select 
