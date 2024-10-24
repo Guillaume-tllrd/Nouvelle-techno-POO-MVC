@@ -62,7 +62,7 @@ class Model extends Db
     }
 
     // ----------------CREATE------------------
-    // d'abord il faut mettre en place dans ntre annoncesModel un structure avec tou lrs champs qui sont présents dans la bd et avec getter et setter 
+    // d'abord il faut mettre en place dans ntre annoncesModel une structure avec tous les champs qui sont présents dans la bd et avec getter et setter 
     // ensuite on peut créer une méthode qui va prendre comme paramètre MOdel qu'on appel $model peu importe. comme on l'hydrate on a pas besoin de le passer en argument. donc on enlve également le $model dans le foreach et on met $this à la place, l'objet lui-même
     public function create()
     {
@@ -90,7 +90,7 @@ class Model extends Db
         $liste_inter = implode(' , ', $inter);
 
         // on peut executer la requête 
-        return $this->requete("INSERT INTO '$this->table.'('. $liste_champs.') VALUES ('.$list_inter.')', $valeurs");
+        return $this->requete("INSERT INTO '$this->table.'('. $liste_champs.') VALUES ('.$liste_inter.')', $valeurs");
         // pas de fetch sur un tableau d'INSERT
 
         // on peut faire une autre méthode pour le create qu'on appelle HYDRATATION cad passer d'un tableau qui viendra par ex d'une requete POST PUUIS ensuite hydraté l'objet avec une méthode hydrate
@@ -123,6 +123,12 @@ class Model extends Db
         // on peut executer la requête 
         return $this->requete("UPDATE '$this->table.' SET '. $liste_champs.' WHERE id = ?', $valeurs");
     }
+
+    public function delete(int $id)
+    {
+        return $this->requete("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+    }
+
     public function requete(string $sql, array $attributs = null)
     {
         // je lui attribut une valeur null si il n'y en a pas
@@ -141,21 +147,16 @@ class Model extends Db
         }
     } // voilà ma méthode pour faire en sorte de faire contionner mes requêtes 
 
-    public function delete(int $id)
-    {
-        return $this->requete("DELETE FROM {$this->table} WHERE id = ?", [$id]);
-    }
-
     public function hydrate($donnees)
     {
         // comme on fait passer un obj étant donné qu'on a changé notre fetch_assoc en fetch_obj on enlve le array de $donnees
         foreach ($donnees as $key => $value) {
             // on récupère le nom du setter correspondant à la clé(key)
-            // ex: titre -> setTitre
+            // ex: titre -> setTitre;
             // on va concaténer en faisant une variable $setter :
             $setter = 'set' . ucfirst($key); // on concatène "set" avec la clé et sa 1ère letre en Uppercase
 
-            // ensuite on vérifie si le setter existe, on tulise une méthode php (method_exist qui va chercher dans notre objet($this) si $setter existe)
+            // ensuite on vérifie si le setter existe, on ulise une méthode php (method_exist qui va chercher dans notre objet($this) si $setter existe)
             if (method_exists($this, $setter)) {
                 // si oui on appelle le setter et on lui passe la valeur
                 $this->$setter($value);

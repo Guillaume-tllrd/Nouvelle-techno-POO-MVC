@@ -78,7 +78,8 @@ class AnnoncesController extends Controller
             }
             $form = new Form;
 
-            $form->debutForm()
+            // si on veut ajouter une image on doit rajouter la méthode dans débutform
+            $form->debutForm('post', '#', ['enctype' => 'multipart/formdata'])
                 ->ajoutLabelFor('titre', "Titre de l'annonce : ")
                 ->ajoutInput('text', 'titre', [
                     'id' => 'titre',
@@ -87,6 +88,12 @@ class AnnoncesController extends Controller
                      ])
                 ->ajoutLabelFor('description', "Texte de l'annonce")
                 ->ajoutTextarea('description', $description, ['id' => 'description', 'class' => 'form-control'])
+                ->ajoutLabelFor('image', "Image de l'annonce : ")
+                ->ajoutInput('file', 'image', [
+                    'id' => 'image',
+                     'class' => 'form-control',
+                    //  'value' => $titre
+                     ])
                 ->ajoutBouton('Ajouter', ['class' => 'btn btn-primary'])
                 ->finForm();
 
@@ -107,7 +114,7 @@ class AnnoncesController extends Controller
             // on instancie notre modèle:
             $annoncesModel = new AnnoncesModel;
 
-            // on cherche l'annonce avec l'idi $id:
+            // on cherche l'annonce avec l'id $id:
             $annonce-> $annoncesModel->find($id);
 
             // si l'annonce n'existe pas, on retourne à la sliste des annonces

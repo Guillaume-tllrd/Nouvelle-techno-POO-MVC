@@ -49,7 +49,7 @@ class Form
                 // si c'est le cas on ajoute a str un espace et notre $attribut (on sépare les attributs par des esapces):
                 $str .= " $attribut";
             } else {
-                // si jamais c'est pas un attribut court OU que savleur est false alors on ajoute attribut='valeur';
+                // si jamais c'est pas un attribut court OU que sa valeur est false alors on ajoute attribut='valeur';
                 $str .= " $attribut=\"$valeur\"";
             }
         }
